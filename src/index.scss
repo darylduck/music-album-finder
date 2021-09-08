@@ -1,0 +1,42 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+html {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  background: #121212;
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+}
+
+body {
+  display: flex;
+  color: #FFF;
+}
+
+h2 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+p {
+  font-size: 1.8rem;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+#root {
+  flex: 1 0 0;
+  display: grid;
+  grid-template-columns: 230px 1fr;
+}

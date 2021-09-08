@@ -5,13 +5,12 @@ import {
   Redirect
 } from 'react-router-dom';
 
-import './App.scss';
-
 import SideBar from './components/shared/layout/SideBar/SideBar';
 import TopBar from './components/shared/layout/TopBar/TopBar';
-import Footer from './components/shared/layout/Footer/Footer';
 import SearchStart from './pages/SearchStart/SearchStart';
-import SearchResults from './pages/SearchResults/SearchResults';
+import SearchResultsPage from './pages/SearchResults/SearchResultsPage';
+
+import './App.scss';
 
 function App() {
   return (
@@ -20,13 +19,14 @@ function App() {
       <main>
           <TopBar />
           <Switch>
-            <Route path="/search/results/:searchTerm" component={SearchResults} />
+            <Route path="/search/results/:searchTerm">
+              <SearchResultsPage />
+            </Route>
             <Route path="/search/start" component={SearchStart} />
             <Route path="/">
               <Redirect to="/search/start" />
             </Route>
-          </Switch>
-          <Footer />        
+          </Switch>      
       </main>
     </Router>
   );

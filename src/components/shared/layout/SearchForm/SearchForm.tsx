@@ -1,5 +1,7 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { searchTermState } from '../../../../store/searchItemsState';
 
 import MagnifyingIcon from '../../icons/MagnifyingIcon/MagnifyingIcon';
 import XIcon from '../../icons/XIcon/XIcon';
@@ -11,14 +13,14 @@ const SEARCH_START_PAGE_URL = '/search/start/';
 const SearchForm = (props: RouteComponentProps) => {
     const { history, location } = props;
     const isSearchResultsPage = location?.pathname?.startsWith(SEARCH_RESULTS_PAGE_URL);
-    const searchUrl =  isSearchResultsPage ? location?.pathname.replace(SEARCH_RESULTS_PAGE_URL, ''): '';
-    const [searchTerm, setSearchTerm] = useState<string>(searchUrl);
+    const [searchTermRequest, setSearchTermRequest] = useRecoilState<{ requestId: number, searchTerm: string }>(searchTermState);
+    const { searchTerm, requestId } = searchTermRequest;
     const clearButtonClass = `${style.tabletClearButton} ${searchTerm.length > 0 ? style.active: undefined}`;
 
     const performSearch = (e: ChangeEvent<HTMLInputElement>) => {
         const newSearchTerm = e.target?.value;
 
-        setSearchTerm(newSearchTerm);
+        setSearchTermRequest({ searchTerm: newSearchTerm, requestId: requestId + 1 });
         
         if (isSearchResultsPage && newSearchTerm) {
             history.replace(`${newSearchTerm}`);
@@ -28,8 +30,7 @@ const SearchForm = (props: RouteComponentProps) => {
     };
 
     const clearSearchTerm = () => {
-        setSearchTerm('');
-
+        setSearchTermRequest({ searchTerm: '', requestId: requestId + 1 });
         history.push(SEARCH_START_PAGE_URL, { key: history.location.key });
     };
 
@@ -44,9 +45,6 @@ const SearchForm = (props: RouteComponentProps) => {
                     <XIcon />
                 </button>
             </div>
-            <button type="button" className={style.mobileClearButton} onClick={clearSearchTerm}>
-                <XIcon isWhite={true} />
-            </button>
         </form>
     );
 };
