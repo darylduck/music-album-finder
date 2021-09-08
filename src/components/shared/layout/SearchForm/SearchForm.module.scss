@@ -3,20 +3,23 @@
     display: flex;
 
     > .searchField {
-        flex: 1 0 0;
+        flex: 0 0 360px;
         display: flex;
+        position: relative; 
 
         > input {
-            background: transparent;
-            font-size: 1.6rem;
+            background: #FFF;
+            font-size: 1.4rem;
             border: 1px solid transparent;
             flex: 1 0 0;
             outline: none;
-            color: #FFF;
-            font-weight: bold;
+            color: #000;
+            height: 40px;
+            padding: 6px 48px;            
+            border-radius: 500px;
     
             &::placeholder {
-                color: #FFF;
+                color: #898989; 
             }
 
             &::-ms-clear {
@@ -25,7 +28,7 @@
         }
 
         > .tabletMagnifyingGlass {
-            display: none;
+            display: block;
             position: absolute;
             top: 10px;
             left: 12px;
@@ -43,51 +46,10 @@
             cursor: pointer;
             border: 0;
             outline: none;
-        }
-    }
 
-    > .mobileClearButton {
-        cursor: pointer;
-        padding: 12px;
-        width: 48px;
-        height: 48px;
-        background: transparent;
-        border: none;
-        outline: none;
-    }
-}
-
-@media (min-width: 768px) and (orientation: portrait), (min-width: 824px) and (orientation: landscape) {
-    #searchForm {
-        > .searchField {
-            position: relative;
-            flex: 0 0 360px;
-            
-            > input {
-                color: #000;
-                font-size: 1.4rem;
-                height: 40px;
-                padding: 6px 48px;
-                font-weight: normal;
-                background: #FFF;
-                border-radius: 500px;
-    
-                &::placeholder {
-                    color: #898989; 
-                }
-            }
-    
-            > .tabletMagnifyingGlass {
+            &.active {
                 display: block;
             }
-    
-            > .tabletClearButton.active {
-                display: block;
-            }
-        }
-
-        > .mobileClearButton {
-            display: none;
         }
     }
 }

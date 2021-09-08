@@ -1,0 +1,9 @@
+.songList {
+    list-style: none;
+    display: grid;
+    padding: 0 32px;
+    grid-gap: 16px;
+    justify-content: center;
+    align-content: start;
+    grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+}

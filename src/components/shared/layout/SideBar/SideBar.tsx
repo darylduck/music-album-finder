@@ -1,14 +1,12 @@
 import style from './SideBar.module.scss';
 
-import homeSmallImage from "../../../../images/icons/home/home-small.svg";
-import homeImage from "../../../../images/icons/home/home.svg";
+import HomeIcon from '../../icons/HomeIcon/HomeIcon';
 
 const SideBar = () => {
     return (
         <div id={style.sideBar}>
             <picture>
-                <source srcSet={homeImage} media="(min-width: 1024px)" />
-                <img src={homeSmallImage} alt="Home" />
+                <HomeIcon />
             </picture>
         </div>
     );
