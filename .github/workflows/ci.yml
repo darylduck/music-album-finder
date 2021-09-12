@@ -1,0 +1,31 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Application Dependencies
+        run: npm install
+
+      - name: Building Application Code
+        run: npm run build
+
+      - name: Running Unit Tests
+        run: npm run test
+
+      - name: Archive Application Code 
+        uses: actions/upload-artifact@v2
+        with:
+          name: application-code
+          path: build
+
+      - name: Archive Infrastructure Code 
+        uses: actions/upload-artifact@v2
+        with:
+          name: infrastructure-code
+          path: infrastructure

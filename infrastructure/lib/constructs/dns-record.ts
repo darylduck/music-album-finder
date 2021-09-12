@@ -14,9 +14,10 @@ export class DNSRecord extends Construct {
         super(parent, id);
 
         const zone = HostedZone.fromLookup(this, 'Zone', { domainName: props.rootDomain });
+        const domainName = props.subDomain ? `${props.subDomain}.${props.rootDomain}`: props.rootDomain;
         
         new ARecord(this, 'WebiteAliasRecord', {
-            recordName: props.rootDomain,
+            recordName: domainName,
             target: RecordTarget.fromAlias(new CloudFrontTarget(props.distribution)),
             zone
         });

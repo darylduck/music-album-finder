@@ -5,7 +5,7 @@ const SearchStart = () => {
         <section className={style.startSearch}>
             <h2>Search Spotify</h2>
             <p>
-                Find your favorite songs, artists, albums, podcasts and playlists.
+                Find your favorite tracks, artists, albums, podcasts and playlists.
             </p>
         </section>
     );
